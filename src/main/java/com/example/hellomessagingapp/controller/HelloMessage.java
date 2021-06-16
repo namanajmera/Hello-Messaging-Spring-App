@@ -12,8 +12,8 @@ public class HelloMessage {
     }
 
     @RequestMapping(value = {"/query", ""}, method = RequestMethod.GET)
-    public String sayHello(@RequestParam(value = "fName") String fName, @RequestParam(value = "lName") String lName) {
-        return "Hello " + fName + " " + lName + "!";
+    public String sayHello(@RequestParam(value = "fName") String fName) {
+        return "Hello " + fName + "!";
     }
 
     @GetMapping("/param/{name}")
@@ -22,7 +22,12 @@ public class HelloMessage {
     }
 
     @PostMapping("/post")
-    public String sayHello(@RequestBody User user){
-        return "Hello"+user.getFirstName()+" "+user.getLastName()+" !";
+    public String sayHello(@RequestBody User user) {
+        return "Hello" + user.getFirstName() + " " + user.getLastName() + " !";
+    }
+
+    @PutMapping("/put/{firstName}")
+    public String sayHello(@PathVariable String firstName, @RequestParam(value = "lastName") String lastName) {
+        return "Hello " + firstName + " " + lastName + "!";
     }
 }
